@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/lang">
+        <file>listserial_zh_CN.qm</file>
+        <file>listserial_en_US.qm</file>
+    </qresource>
+</RCC>

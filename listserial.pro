@@ -1,15 +1,18 @@
 TEMPLATE = lib
 CONFIG += plugin
-QT += core widgets
+QT += core widgets serialport
 
 INCLUDEPATH += $$PWD/plugininterface \
         $$PWD
 HEADERS = plugininterface/plugininterface.h \
-        helloworld.h
+        listserial.h
 SOURCES = plugininterface/plugininterface.cpp \
-        helloworld.cpp
+        listserial.cpp
+TRANSLATIONS = listserial_zh_CN.ts \
+        listserial_en_US.ts
+RESOURCES = listserial.qrc
 
-TARGET = $$qtLibraryTarget(helloworld)
+TARGET = $$qtLibraryTarget(listserial)
 
 win32:{
     build_info.commands = $$quote("c:/Windows/system32/WindowsPowerShell/v1.0/powershell.exe -ExecutionPolicy Bypass -NoLogo -NoProfile -File \"$$PWD/tools/replacer.ps1\" -cc_info $$QMAKE_CXX -tpath $$PWD/plugininterface/plugininterface.json.temp -opath $$PWD/plugininterface/plugininterface.json")
