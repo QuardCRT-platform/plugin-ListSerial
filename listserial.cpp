@@ -21,7 +21,7 @@ ListSerial::ListSerialDialog::ListSerialDialog(QWidget *parent): QDialog(parent)
     table->setSelectionBehavior(QAbstractItemView::SelectRows);
     table->setSelectionMode(QAbstractItemView::SingleSelection);
     table->horizontalHeader()->setSectionsClickable(false);
-    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    table->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     layout->addWidget(table);
     QPushButton *button = new QPushButton(m_closeText, this);
     layout->addWidget(button);
@@ -36,14 +36,23 @@ void ListSerial::ListSerialDialog::setSerialPortInfo(const QList<QSerialPortInfo
     for (int i = 0; i < serialPortInfoList.size(); i++) {
         const QSerialPortInfo &info = serialPortInfoList.at(i);
         table->setItem(i, 0, new QTableWidgetItem(info.portName()));
+        table->item(i, 0)->setToolTip(info.portName());
         table->setItem(i, 1, new QTableWidgetItem(info.description()));
+        table->item(i, 1)->setToolTip(info.description());
         table->setItem(i, 2, new QTableWidgetItem(info.manufacturer()));
+        table->item(i, 2)->setToolTip(info.manufacturer());
         table->setItem(i, 3, new QTableWidgetItem(info.serialNumber()));
+        table->item(i, 3)->setToolTip(info.serialNumber());
         table->setItem(i, 4, new QTableWidgetItem(info.systemLocation()));
-        if(info.hasVendorIdentifier())
+        table->item(i, 4)->setToolTip(info.systemLocation());
+        if(info.hasVendorIdentifier()) {
             table->setItem(i, 5, new QTableWidgetItem(QString::number(info.vendorIdentifier(), 16)));
-        if(info.hasProductIdentifier())
+            table->item(i, 5)->setToolTip(QString::number(info.vendorIdentifier(), 16));
+        }
+        if(info.hasProductIdentifier()) {
             table->setItem(i, 6, new QTableWidgetItem(QString::number(info.productIdentifier(), 16)));
+            table->item(i, 6)->setToolTip(QString::number(info.productIdentifier(), 16));
+        }
     }
 }
 
