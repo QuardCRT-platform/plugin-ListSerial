@@ -7,7 +7,7 @@
 #include <QSerialPortInfo>
 
 #define PLUGIN_NAME    "List Serial"
-#define PLUGIN_VERSION "0.0.1"
+#define PLUGIN_VERSION "0.0.2"
 
 class ListSerial : public PluginInterface
 {
