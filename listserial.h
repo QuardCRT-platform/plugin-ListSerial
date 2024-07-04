@@ -41,13 +41,17 @@ public:
         ListSerialDialog(QWidget *parent = nullptr);
         void setSerialPortInfo(const QList<QSerialPortInfo> &serialPortInfoList);
         void setCloseText(const QString &text);
+        void setRefreshText(const QString &text);
         void setHeaderLabels(const QStringList &labels);
 
     private:
         QString m_closeText = "Close";
+        QString m_refreshText = "Refresh";
         QStringList m_headerLabels = QStringList() << "Port" << 
             "Description" << "Manufacturer" << "Serial Number" << 
             "Location" << "Vendor ID" << "Product ID";
+        QPushButton *buttonClose;
+        QPushButton *buttonRefresh;
     };
 
 private:

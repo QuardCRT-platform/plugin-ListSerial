@@ -4,53 +4,58 @@
 <context>
     <name>ListSerial</name>
     <message>
-        <location filename="listserial.cpp" line="68"/>
+        <location filename="listserial.cpp" line="88"/>
         <source>List Serial Ports</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="listserial.cpp" line="69"/>
+        <location filename="listserial.cpp" line="89"/>
         <source>Close</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="listserial.cpp" line="70"/>
+        <location filename="listserial.cpp" line="90"/>
+        <source>Refresh</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="listserial.cpp" line="91"/>
         <source>Port</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="listserial.cpp" line="71"/>
+        <location filename="listserial.cpp" line="92"/>
         <source>Description</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="listserial.cpp" line="71"/>
+        <location filename="listserial.cpp" line="92"/>
         <source>Manufacturer</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="listserial.cpp" line="71"/>
+        <location filename="listserial.cpp" line="92"/>
         <source>Serial Number</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="listserial.cpp" line="72"/>
+        <location filename="listserial.cpp" line="93"/>
         <source>Location</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="listserial.cpp" line="72"/>
+        <location filename="listserial.cpp" line="93"/>
         <source>Vendor ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="listserial.cpp" line="72"/>
+        <location filename="listserial.cpp" line="93"/>
         <source>Product ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="listserial.cpp" line="64"/>
-        <location filename="listserial.cpp" line="105"/>
+        <location filename="listserial.cpp" line="84"/>
+        <location filename="listserial.cpp" line="126"/>
         <source>List Serial</source>
         <translation></translation>
     </message>

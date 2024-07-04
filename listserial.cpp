@@ -23,13 +23,20 @@ ListSerial::ListSerialDialog::ListSerialDialog(QWidget *parent): QDialog(parent)
     table->horizontalHeader()->setSectionsClickable(false);
     table->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     layout->addWidget(table);
-    QPushButton *button = new QPushButton(m_closeText, this);
-    layout->addWidget(button);
-    connect(button, &QPushButton::clicked, this, &QDialog::accept);
+    buttonRefresh= new QPushButton(m_refreshText, this);
+    layout->addWidget(buttonRefresh);
+    connect(buttonRefresh, &QPushButton::clicked, this, [&](void) {
+        QList<QSerialPortInfo> serialPortInfoList = QSerialPortInfo::availablePorts();
+        setSerialPortInfo(serialPortInfoList);
+    });
+    buttonClose = new QPushButton(m_closeText, this);
+    layout->addWidget(buttonClose);
+    connect(buttonClose, &QPushButton::clicked, this, &QDialog::accept);
 }
 
 void ListSerial::ListSerialDialog::setSerialPortInfo(const QList<QSerialPortInfo> &serialPortInfoList) {
     QTableWidget *table = findChild<QTableWidget *>();
+    table->clearContents();
     table->setColumnCount(7);
     table->setHorizontalHeaderLabels(m_headerLabels);
     table->setRowCount(serialPortInfoList.size());
@@ -58,8 +65,12 @@ void ListSerial::ListSerialDialog::setSerialPortInfo(const QList<QSerialPortInfo
 
 void ListSerial::ListSerialDialog::setCloseText(const QString &text) {
     m_closeText = text;
-    QPushButton *button = findChild<QPushButton *>();
-    button->setText(m_closeText);
+    buttonClose->setText(m_closeText);
+}
+
+void ListSerial::ListSerialDialog::setRefreshText(const QString &text) {
+    m_refreshText = text;
+    buttonRefresh->setText(m_refreshText);
 }
 
 void ListSerial::ListSerialDialog::setHeaderLabels(const QStringList &labels) {
@@ -76,6 +87,7 @@ int ListSerial::init(QMap<QString, QString> params, QWidget *parent)
         ListSerialDialog dialog(parent);
         dialog.setWindowTitle(tr("List Serial Ports"));
         dialog.setCloseText(tr("Close"));
+        dialog.setRefreshText(tr("Refresh"));
         dialog.setHeaderLabels(QStringList() << tr("Port") << 
             tr("Description") << tr("Manufacturer") << tr("Serial Number") << 
             tr("Location") << tr("Vendor ID") << tr("Product ID"));
