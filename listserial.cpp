@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QHeaderView>
 #include <QTranslator>
+#include <QClipboard>
 #include <QDebug>
 
 ListSerial::ListSerialDialog::ListSerialDialog(QWidget *parent): QDialog(parent) {
@@ -22,6 +23,28 @@ ListSerial::ListSerialDialog::ListSerialDialog(QWidget *parent): QDialog(parent)
     table->setSelectionMode(QAbstractItemView::SingleSelection);
     table->horizontalHeader()->setSectionsClickable(false);
     table->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    table->setContextMenuPolicy(Qt::ActionsContextMenu);
+    QAction *copyAction = new QAction(tr("Copy"), table);
+    table->addAction(copyAction);
+    connect(copyAction, &QAction::triggered, [&,table]() {
+        QItemSelectionModel *selection = table->selectionModel();
+        QModelIndexList indexes = selection->selectedIndexes();
+
+        if (indexes.size() < 1)
+            return;
+
+        QString selected_text;
+        for (int i = 0; i < indexes.size(); ++i) {
+            QModelIndex index = indexes.at(i);
+            QString text = table->model()->data(index).toString();
+            selected_text.append(text);
+            if (i < indexes.size() - 1)
+                selected_text.append("\t");
+        }
+
+        QClipboard *clipboard = QApplication::clipboard();
+        clipboard->setText(selected_text);
+    });
     layout->addWidget(table);
     buttonRefresh= new QPushButton(m_refreshText, this);
     layout->addWidget(buttonRefresh);
