@@ -35,7 +35,7 @@ jobs:
           mingw32-make -j8
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: liblistserial_mingw
           path: |
@@ -72,7 +72,7 @@ jobs:
           cp ./release/listserial.dll ./release/listserial.msvc.dll
 
       - name: Upload build asserts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: liblistserial_msvc
           path: |
