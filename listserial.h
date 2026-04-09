@@ -7,7 +7,7 @@
 #include <QSerialPortInfo>
 
 #define PLUGIN_NAME    "List Serial"
-#define PLUGIN_VERSION "0.0.5"
+#define PLUGIN_VERSION "0.0.6"
 #define PLUGIN_WEBSITE "https://github.com/QuardCRT-platform/plugin-ListSerial"
 
 class ListSerial : public PluginInterface
